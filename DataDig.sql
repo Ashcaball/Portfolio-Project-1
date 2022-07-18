@@ -20,11 +20,11 @@ WHERE location LIKE 'United States'
 ORDER BY 1,2
 
 /* Looking at countries with highest infection rate compared to population */
-SELECT location, max(total_cases) AS HighestInfectionCount, population, max(Total_cases/population)*100 AS ContractedCovidPercentage
+SELECT location, population, date, max(total_cases) AS HighestInfectionCount, max(Total_cases/population)*100 AS PercentPopulationInfected
 FROM `robust-team-356223.Covid_Research.CovidDeaths`
 WHERE Continent is not null
-Group By Location, population
-ORDER BY ContractedCovidPercentage desc
+Group By Location, population, date
+ORDER BY PercentPopulationInfected desc
 
 /* Looking at Countires with highest death count per population*/
 SELECT location, max(total_deaths) as TotalDeathCount
